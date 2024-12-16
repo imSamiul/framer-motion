@@ -1,10 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { usePizza } from "../context/PizzaContext";
 
 export const Route = createFileRoute("/base")({
-  component: Base,
+  component: RouteComponent,
 });
 
-const Base = ({ addBase, pizza }) => {
+function RouteComponent() {
+  const { addBase, pizza } = usePizza();
   const bases = ["Classic", "Thin & Crispy", "Thick Crust"];
 
   return (
@@ -30,6 +32,4 @@ const Base = ({ addBase, pizza }) => {
       )}
     </div>
   );
-};
-
-export default Base;
+}

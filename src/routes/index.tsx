@@ -1,5 +1,5 @@
 import * as React from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import Header from "../components/Header";
 
 export const Route = createFileRoute("/")({
@@ -8,9 +8,11 @@ export const Route = createFileRoute("/")({
 
 function HomeComponent() {
   return (
-    <div className="p-2">
-      <Header />
-      <h3>Welcome Home!</h3>
+    <div className="home container">
+      <h2>Welcome to Pizza Joint</h2>
+      <Link to="/base">
+        <button>Create Your Pizza</button>
+      </Link>
     </div>
   );
 }

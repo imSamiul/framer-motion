@@ -38,7 +38,7 @@ export function PizzaProvider({ children }: { children: React.ReactNode }) {
 export function usePizza() {
   const context = React.useContext(PizzaContext);
   if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    throw new Error("usePizza must be used within an PizzaProvider");
   }
   return context;
 }

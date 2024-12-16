@@ -11,11 +11,25 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as ToppingsImport } from './routes/toppings'
+import { Route as OrderImport } from './routes/order'
 import { Route as BaseImport } from './routes/base'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const ToppingsRoute = ToppingsImport.update({
+  id: '/toppings',
+  path: '/toppings',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const OrderRoute = OrderImport.update({
+  id: '/order',
+  path: '/order',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const BaseRoute = BaseImport.update({
   id: '/base',
@@ -60,6 +74,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BaseImport
       parentRoute: typeof rootRoute
     }
+    '/order': {
+      id: '/order'
+      path: '/order'
+      fullPath: '/order'
+      preLoaderRoute: typeof OrderImport
+      parentRoute: typeof rootRoute
+    }
+    '/toppings': {
+      id: '/toppings'
+      path: '/toppings'
+      fullPath: '/toppings'
+      preLoaderRoute: typeof ToppingsImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -69,12 +97,16 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/base': typeof BaseRoute
+  '/order': typeof OrderRoute
+  '/toppings': typeof ToppingsRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/base': typeof BaseRoute
+  '/order': typeof OrderRoute
+  '/toppings': typeof ToppingsRoute
 }
 
 export interface FileRoutesById {
@@ -82,14 +114,16 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/base': typeof BaseRoute
+  '/order': typeof OrderRoute
+  '/toppings': typeof ToppingsRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/base'
+  fullPaths: '/' | '/about' | '/base' | '/order' | '/toppings'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/base'
-  id: '__root__' | '/' | '/about' | '/base'
+  to: '/' | '/about' | '/base' | '/order' | '/toppings'
+  id: '__root__' | '/' | '/about' | '/base' | '/order' | '/toppings'
   fileRoutesById: FileRoutesById
 }
 
@@ -97,12 +131,16 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   BaseRoute: typeof BaseRoute
+  OrderRoute: typeof OrderRoute
+  ToppingsRoute: typeof ToppingsRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   BaseRoute: BaseRoute,
+  OrderRoute: OrderRoute,
+  ToppingsRoute: ToppingsRoute,
 }
 
 export const routeTree = rootRoute
@@ -117,7 +155,9 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/about",
-        "/base"
+        "/base",
+        "/order",
+        "/toppings"
       ]
     },
     "/": {
@@ -128,6 +168,12 @@ export const routeTree = rootRoute
     },
     "/base": {
       "filePath": "base.tsx"
+    },
+    "/order": {
+      "filePath": "order.tsx"
+    },
+    "/toppings": {
+      "filePath": "toppings.tsx"
     }
   }
 }

@@ -1,9 +1,13 @@
-import * as React from "react";
-import { Link, Outlet, createRootRoute } from "@tanstack/react-router";
+import { Outlet, createRootRouteWithContext } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import Header from "../components/Header";
+import { PizzaContext } from "../context/PizzaContext";
 
-export const Route = createRootRoute({
+interface MyRouterContext {
+  pizza: PizzaContext;
+}
+
+export const Route = createRootRouteWithContext<MyRouterContext>()({
   component: RootComponent,
 });
 
